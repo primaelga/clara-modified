@@ -39,21 +39,21 @@
                     },
                     transport: {
                         read: {
-                            url: "http://localhost:8000/api/services/person",
+                            url: "http://localhost:81/api/services/person",
                             contentType: "application/json",
                             type: "GET"
                         },
                         update: {
-                            url: "http://localhost:8000/api/service/person",
+                            url: "http://localhost:81/api/service/person",
                             //contentType: "application/json",
                             type: "put"
                         },
                         create: {
-                            url: "http://localhost:8000/api/service/person",
+                            url: "http://localhost:81/api/service/person",
                             type: "post"
                         },
                         destroy: {
-                            url: "http://localhost:8000/api/service/person",
+                            url: "http://localhost:81/api/service/person",
                            // contentType: "application/json",
                             type: "delete"
                         },

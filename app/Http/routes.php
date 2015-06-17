@@ -12,17 +12,18 @@
 */
 
 $app->get('/', function() use ($app) {
+    //return "hello";
     return $app->welcome();
 });
 
 
-$app->get('api/service','App\Http\Controllers\PersonController@index');
+$app->get('api/service','App\Http\Controllers\DataController@index');
  
-$app->get('api/services/{table}','App\Http\Controllers\PersonController@ReadService');
+$app->get('api/service/{table}','App\Http\Controllers\DataController@ReadService');
  
-$app->post('api/service/{table}','App\Http\Controllers\PersonController@CreateService');
+$app->post('api/service/{table}','App\Http\Controllers\DataController@CreateService');
  
-$app->put('api/service/{table}','App\Http\Controllers\PersonController@UpdateService');
+$app->put('api/service/{table}/{key}','App\Http\Controllers\DataController@UpdateService');
  
-$app->delete('api/service/{table}','App\Http\Controllers\PersonController@DeleteService');
+$app->delete('api/service/{table}/{key}','App\Http\Controllers\DataController@DeleteService');
  

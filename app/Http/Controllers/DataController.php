@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class PersonController extends Controller{
+class DataController extends Controller{
     
         
         public function index()
@@ -72,43 +72,41 @@ class PersonController extends Controller{
             
             
              /*Count Records*/
-            $Person['Total'] = $query->count();
+            $Data['Total'] = $query->count();
             
             
-            $Person['Data'] = $query->get();
+            $Data['Data'] = $query->get();
             
-            return response()->json($Person);
+            return response()->json($Data);
 	 }
 	
 	public function DetailService($id)
 	{
-		$Person = Person::find($id);
+		$Data = Data::find($id);
 		
-		return response()->json($Person);
+		return response()->json($Data);
 	}
 	
 	public function CreateService(Request $request,$table)
 	{
-		$Person = DB::table($table)->insert($request->all());
-		
-		return response()->json($Person);
+		$Data = DB::table($table)->insert($request->all());
+		return response()->json($Data);
 	}
 	
-	public function DeleteService(Request $request,$table)
+	public function DeleteService(Request $request,$table,$key)
 	{
-		
-		$Person = DB::table($table)
-                        ->where('id',$request->get('id'))
+		$Data = DB::table($table)
+                        ->where($key,$request->input($key))
                         ->delete();
-		return response()->json('success');
+		return response()->json($Data);
 	}
 	
-	public function UpdateService(Request $request,$table)
+	public function UpdateService(Request $request,$table,$key)
 	{
-		$Person = DB::table($table)
-                        ->where('id',$request->get('id'))
-                        ->update($request->all());
-		return response()->json($Person);
+		$Data = DB::table($table)
+                        ->where($key,$request->get($key))
+                        ->update($request->except("_method"));
+		return response()->json($Data);
 	}
 	
 }
