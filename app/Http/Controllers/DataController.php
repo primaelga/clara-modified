@@ -80,10 +80,15 @@ class DataController extends Controller{
             return response()->json($Data);
 	 }
 	
-	public function DetailService($id)
+	public function DetailService($table, $id)
 	{
-		$Data = Data::find($id);
-		
+		$Data = DB::table($table)->where('id', $id)->first();
+		return response()->json($Data);
+	}
+	
+	public function DetailServiceByField($table, $idfield, $id)
+	{
+		$Data = DB::table($table)->where($idfield, $id)->first();
 		return response()->json($Data);
 	}
 	
@@ -93,18 +98,18 @@ class DataController extends Controller{
 		return response()->json($Data);
 	}
 	
-	public function DeleteService(Request $request,$table,$key)
+	public function DeleteService(Request $request,$table,$idfield)
 	{
 		$Data = DB::table($table)
-                        ->where($key,$request->input($key))
+                        ->where($idfield,$request->input($idfield))
                         ->delete();
 		return response()->json($Data);
 	}
 	
-	public function UpdateService(Request $request,$table,$key)
+	public function UpdateService(Request $request,$table,$idfield)
 	{
 		$Data = DB::table($table)
-                        ->where($key,$request->get($key))
+                        ->where($idfield,$request->get($idfield))
                         ->update($request->except("_method"));
 		return response()->json($Data);
 	}

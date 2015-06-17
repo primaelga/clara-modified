@@ -20,10 +20,13 @@ $app->get('/', function() use ($app) {
 $app->get('api/service','App\Http\Controllers\DataController@index');
  
 $app->get('api/service/{table}','App\Http\Controllers\DataController@ReadService');
+
+$app->get('api/service/{table}/{id}','App\Http\Controllers\DataController@DetailService');
+$app->get('api/service/{table}/{idfield}/{id}','App\Http\Controllers\DataController@DetailServiceByField');
  
 $app->post('api/service/{table}','App\Http\Controllers\DataController@CreateService');
  
-$app->put('api/service/{table}/{key}','App\Http\Controllers\DataController@UpdateService');
+$app->put('api/service/{table}/{idfield}','App\Http\Controllers\DataController@UpdateService');
  
-$app->delete('api/service/{table}/{key}','App\Http\Controllers\DataController@DeleteService');
+$app->delete('api/service/{table}/{idfield}','App\Http\Controllers\DataController@DeleteService');
  
