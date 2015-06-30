@@ -17,10 +17,10 @@
                 </ul>
                 <div class="user-details">
                     <ul>
-                        <li><label>Name:</label>#= name #</li>
-                        <li><label>Address:</label>#= address #</li>
-                        <li><label>Email:</label>#= email #</li>
-                        <li><label>Phone:</label>#= phone #</li>
+                        <li><label>Name:</label>#= full_name #</li>
+                        <li><label>Address:</label>#= id_user #</li>
+                        <li><label>Email:</label>#= id_project #</li>
+                        <li><label>Phone:</label>#= email #</li>
                     </ul>
                 </div>
             </div>
@@ -39,21 +39,21 @@
                     },
                     transport: {
                         read: {
-                            url: "http://localhost:81/api/services/person",
+                            url: "http://localhost:8000/api/services/users",
                             contentType: "application/json",
                             type: "GET"
                         },
                         update: {
-                            url: "http://localhost:81/api/service/person",
+                            url: "http://localhost:8000/api/service/users",
                             //contentType: "application/json",
                             type: "put"
                         },
                         create: {
-                            url: "http://localhost:81/api/service/person",
+                            url: "http://localhost:8000/api/service/users",
                             type: "post"
                         },
                         destroy: {
-                            url: "http://localhost:81/api/service/person",
+                            url: "http://localhost:8000/api/service/users",
                            // contentType: "application/json",
                             type: "delete"
                         },
@@ -73,13 +73,13 @@
                         data: "Data",
                         total: "Total",
                         model: {
-                            id: "id",
+                            id: "id_user",
                             fields: {
-                                id: { editable: false, nullable: true },
-                                name: { validation: { required: true } },
-                                address: { validation: { required: true } },
+                                id_user: { validation: { required: true } },
+                                id_project: { validation: { required: true } },
+                                full_name: { validation: { required: true } },
                                 email: { validation: { required: true } },
-                                phone: { validation: { required: true } }
+                                id_role: { validation: { required: true } }
                             }
                         }
                     }
@@ -114,17 +114,23 @@
 //                            title: "id"
 //                        },
                         {
-                            field: "name",
-                            title: "Name"
-                        }, {
-                            field: "address",
-                            title: "Address"
+                            field: "id_user",
+                            title: "ID"
+                        },
+						{
+                            field: "id_project",
+                            title: "Proyek"
+                        },
+						{
+                            field: "full_name",
+                            title: "Nama Lengkap"
                         }, {
                             field: "email",
                             title: "Email"
-                        },{
-                            field: "phone",
-                            title: "Phone"
+                        },
+						{
+                            field: "id_role",
+                            title: "Role"
                         },
                         {
                             command: ["edit", "destroy"],
